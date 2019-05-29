@@ -4,11 +4,10 @@ $page_title = 'Webprogramming Assignment 3';
 $navigation = Array(
     'active' => 'News Edit',
     'items' => Array(
-        'News' => '/WP19/assignment_3/index.php',
-        'News Edit' => '/wp19/assignment_3/news_edit.php',
-        'Add news item' => '/WP19/assignment_3/news_add.php',
-        'Leap Year' => '/WP19/assignment_3/leapyear.php',
-        'Simple Form' => '/WP19/assignment_3/simple_form.php'
+        'News' => '/Webprog-Chess/site/index.php',
+        'News Edit' => '/Webprog-Chess/site/news_edit.php',
+        'Add news item' => '/Webprog-Chess/site/news_add.php',
+        'Checkers' => '/Webprog-Chess/site/checkers.php',
     )
 );
 include __DIR__ . '/tpl/head.php';
