@@ -1,0 +1,11 @@
+Bord maken
+Stenen laten zien
+Start posities
+New game
+Posities automatisch updaten
+Verplaatsen op basis van klik
+Turn based
+Stukken slaan
+Mogelijke zetten bepalen
+Mogelijke zetten weergeven
+Koningin
