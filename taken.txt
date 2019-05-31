@@ -1,8 +1,8 @@
-Bord maken
-Stenen laten zien
-Start posities
-New game
-Posities automatisch updaten
+Bord maken -Adam
+Stenen laten zien -Robin
+Start posities -Robin
+New game -Stijn
+Posities automatisch updaten -Stijn
 Verplaatsen op basis van klik
 Turn based
 Stukken slaan
