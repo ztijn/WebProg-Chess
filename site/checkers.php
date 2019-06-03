@@ -1,8 +1,8 @@
 <?php
 /* Header */
-$page_title = 'Webprogramming Assignment 3';
+$page_title = 'Checkers';
 $navigation = Array(
-    'active' => 'Add news item',
+    'active' => 'Checkers',
     'items' => Array(
         'News' => '/Webprog-Chess/site/index.php',
         'Add news item' => '/Webprog-Chess/site/news_add.php',
@@ -13,23 +13,30 @@ include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
 ?>
     <script type="application/javascript" src="scripts/main.js"></script>
-
-    <div class="pd-40"></div>
+    <link rel="stylesheet" href="css/checkers.css">
     <div class="row">
-        <div class="col-md-12">
-            <form action="scripts/add_item.php" method="POST">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" name="title">
-                </div>
-                <div class="form-group">
-                    <label for="article">Article</label>
-                    <textarea class="form-control" id="article" name="article" rows="3"></textarea>
-                </div>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-
+    <table>
+        <?php
+        $Letters = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
+        $number = 11;
+        for ($row = 1; $row <= 10; $row++) {
+            $number = $number - 1;
+            $i = -1;
+            echo "<tr id=$number>";
+            for ($col = 1; $col <= 10; $col++) {
+                $i = $i + 1;
+                $total = $row + $col;
+                if ($total % 2 == 0) {
+                    echo "<td bgcolor=#f0d9b5 id='$Letters[$i]$number'><img src='images/piece_black.png'</img></td>";
+                } else {
+                    echo "<td bgcolor=#b58863 id='$Letters[$i]$number'><img src='images/piece_white.png'</img></td>";
+                }
+            }
+            echo "</tr>";
+        }
+        ?>
+    </table>
+    </div>
 <?php
 include __DIR__ . '/tpl/body_end.php';
 ?>
