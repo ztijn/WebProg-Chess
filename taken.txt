@@ -8,4 +8,11 @@ Turn based
 Stukken slaan
 Mogelijke zetten bepalen
 Mogelijke zetten weergeven
-Koningin
+Koning
+Opmaak site
+
+
+Extra
+Animaties
+Lobby/meer dan 2 spelers
+Chat
