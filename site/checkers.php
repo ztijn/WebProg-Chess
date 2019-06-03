@@ -12,8 +12,11 @@ $navigation = Array(
 include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
 ?>
-    <script type="application/javascript" src="scripts/main.js"></script>
+    <!--Script and style-->
+    <script type="application/javascript" src="scripts/checkers.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
+
+    <!--Create the board as a table-->
     <div class="row">
     <table>
         <?php
@@ -27,9 +30,9 @@ include __DIR__ . '/tpl/body_start.php';
                 $i = $i + 1;
                 $total = $row + $col;
                 if ($total % 2 == 0) {
-                    echo "<td bgcolor=#f0d9b5 id='$Letters[$i]$number'><img src='images/piece_black.png'</img></td>";
+                    echo "<td bgcolor=#f0d9b5 id='$Letters[$i]$number'></td>";
                 } else {
-                    echo "<td bgcolor=#b58863 id='$Letters[$i]$number'><img src='images/piece_white.png'</img></td>";
+                    echo "<td bgcolor=#b58863 id='$Letters[$i]$number'></td>";
                 }
             }
             echo "</tr>";
