@@ -18,6 +18,14 @@ include __DIR__ . '/tpl/body_start.php';
         <div class="col-md-12" id="news_container">
         </div>
     </div>
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
 <?php
+$_SESSION['username'] = $_POST['username'];
 include __DIR__ . '/tpl/body_end.php';
 ?>

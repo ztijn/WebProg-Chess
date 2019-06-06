@@ -7,6 +7,12 @@ function p_print($array){
 }
 ?>
 
+<?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +45,11 @@ function p_print($array){
                     </li>
                 <?php } ?>
             <?php } ?>
+            <?php if (!isset($username)) {
+                echo "Not logged in.";
+            } else {
+                echo "Logged in as ", ($username);
+            } ?>
         </ul>
     </nav>
 </header>
