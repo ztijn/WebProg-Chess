@@ -9,6 +9,9 @@ function p_print($array){
 
 <?php
     session_start();
+    if (!isset($_SESSION['username'])){
+        $_SESSION['username'] = $_POST;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
