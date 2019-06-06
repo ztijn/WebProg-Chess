@@ -40,6 +40,7 @@ include __DIR__ . '/tpl/body_start.php';
         ?>
     </table>
     </div>
+        <div class="btn btn-primary" id="startbtn">Start new game</div>
 <?php
 include __DIR__ . '/tpl/body_end.php';
 ?>
