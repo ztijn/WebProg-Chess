@@ -26,6 +26,8 @@ include __DIR__ . '/tpl/body_start.php';
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 <?php
-$_SESSION['username'] = $_POST['username'];
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = $_POST['username'];
+}
 include __DIR__ . '/tpl/body_end.php';
 ?>

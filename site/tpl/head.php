@@ -9,9 +9,6 @@ function p_print($array){
 
 <?php
     session_start();
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,10 +42,16 @@ function p_print($array){
                     </li>
                 <?php } ?>
             <?php } ?>
-            <?php if (!isset($username)) {
-                echo "Not logged in.";
-            } else {
-                echo "Logged in as ", ($username);
+            <?php if (!isset($_SESSION['username'])) { ?>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            <?php } else {
+                echo "Logged in as ", ($_SESSION['username']);
             } ?>
         </ul>
     </nav>
