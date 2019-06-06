@@ -1,13 +1,13 @@
 Bord maken -Adam
 Stenen laten zien -Robin
 Start posities -Robin
-New game -Stijn
+Posities resetten -Stijn
 Posities automatisch updaten -Stijn
+>stenen weghalen
 Verplaatsen op basis van klik
 Turn based
 Stukken slaan
-Mogelijke zetten bepalen
-Mogelijke zetten weergeven
+Mogelijke zetten bepalen + weergeven
 Koning
 Opmaak site
 
