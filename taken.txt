@@ -1,18 +1,21 @@
-Bord maken -Adam
-Stenen laten zien -Robin
-Start posities -Robin
-Posities resetten -Stijn
-Posities automatisch updaten -Stijn
->stenen weghalen
-Verplaatsen op basis van klik
-Turn based
-Stukken slaan
+Bord maken -Adam -done
+Nummers naast bord -Adam
+Stenen laten zien -Robin -done
+Koning weergeven-Robin 
+Start posities -Robin -done
+Posities resetten -Stijn -done
+Posities automatisch updaten -Stijn -done
+>stenen weghalen -Stijn -done
+Verplaatsen op basis van klik -Stijn 
+Turn based/Multiplayer -Robin
 Mogelijke zetten bepalen + weergeven
-Koning
-Opmaak site
+Stukken slaan 
+Koning Regels 
+Opmaak site -Adam
 
 
 Extra
 Animaties
+Spelregels -Adam
 Lobby/meer dan 2 spelers
 Chat
