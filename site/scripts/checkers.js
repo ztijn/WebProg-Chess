@@ -1,7 +1,7 @@
 function new_game() {
-    // $.post("scripts/newgame.php", {call_now: "True"});
+    // $.post("scripts/new_game.php", {call_now: "True"});
     console.log("Hello");
-    let newgame = $.post('scripts/newgame.php', {call_now: 'True'});
+    let newgame = $.post('scripts/new_game.php', {call_now: 'True'});
     newgame.done(function(data) {
         print_latest_positions();
     });
@@ -18,15 +18,17 @@ function print_latest_positions() {
         //en de value zijn alle ids van de vakjes waar die steen in staat
         let black = data.black;
         let white = data.white;
-        let white_king = data.king_white;
-        let black_king = data.king_black;
+        let white_king = data.white_king;
+        let black_king = data.black_king;
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
-                console.log("black");
                 $('#' + positions_ids[i]).html("<img src='images/piece_black.png'>");
             } else if (white.includes(positions_ids[i])){
-                console.log("white");
                 $('#' + positions_ids[i]).html("<img src='images/piece_white.png'>");
+            } else if (black_king.includes(positions_ids[i])){
+                $('#' + positions_ids[i]).html("<img src='images/piece_black_king.png'>");
+            } else if (white_king.includes(positions_ids[i])){
+                $('#' + positions_ids[i]).html("<img src='images/piece_white_king.png'>");
             } else {
                 $('#' + positions_ids[i]).html("");
             }

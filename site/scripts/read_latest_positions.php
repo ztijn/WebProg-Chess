@@ -9,15 +9,15 @@ if (isset($_POST['call_now'])) {
     foreach ($articles as $key => $value) {
         $white = $value["white"];
         $black = $value["black"];
-        $king_white = $value["king_white"];
-        $king_black = $value["king_black"];
+        $white_king = $value["white_king"];
+        $black_king = $value["black_king"];
     }
     // Save html into array
     $export_data = [
         'white' => $white,
         'black' => $black,
-        'king_white' => $king_white,
-        'king_black' => $king_black,
+        'white_king' => $white_king,
+        'black_king' => $black_king,
     ];
     // Return JSON
     header('Content-Type: application/json');
