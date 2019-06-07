@@ -9,8 +9,8 @@ function p_print($array){
 
 <?php
     session_start();
-    if (!isset($_SESSION['username'])){
-        $_SESSION['username'] = $_POST;
+    if (!isset($_SESSION['username']) && isset($_POST['username'])){
+        $_SESSION['username'] = $_POST['username'];
     }
 ?>
 <!DOCTYPE html>
@@ -27,6 +27,7 @@ function p_print($array){
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="application/javascript" src="scripts/main.js"></script>
 </head>
 <body>
 <header>
@@ -45,6 +46,7 @@ function p_print($array){
                     </li>
                 <?php } ?>
             <?php } ?>
+            <!--If not logged in display login option-->
             <?php if (!isset($_SESSION['username'])) { ?>
                 <form method="post">
                     <div class="form-group">
@@ -53,9 +55,13 @@ function p_print($array){
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
+            <!--If logged in display username and logout option-->
             <?php } else {
-                echo "Logged in as ", ($_SESSION['username']);
-            } ?>
+                echo "Logged in as ", ($_SESSION['username']); ?>
+                <form method="post">
+                    <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
+                </form>
+            <?php } ?>
         </ul>
     </nav>
 </header>

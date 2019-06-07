@@ -1,3 +1,4 @@
+
 function new_game() {
     // $.post("scripts/new_game.php", {call_now: "True"});
     console.log("Hello");
@@ -40,6 +41,9 @@ $(function() {
     print_latest_positions();
     $("#startbtn").click(function() {
         new_game();
+    });
+    $("#logout").click(function() {
+        logout();
     });
     window.setInterval(function () {
         print_latest_positions();
