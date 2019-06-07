@@ -12,7 +12,7 @@ $navigation = Array(
 include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
 ?>
-<script type="application/javascript" src="scripts/main.js"></script>
+<script type="application/javascript" src="scripts/mainold.js"></script>
 
 <div class="pd-40"></div>
 <div class="row">
