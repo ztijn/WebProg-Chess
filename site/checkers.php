@@ -4,8 +4,7 @@ $page_title = 'Checkers';
 $navigation = Array(
     'active' => 'Checkers',
     'items' => Array(
-        'News' => '/Webprog-Chess/site/index.php',
-        'Add news item' => '/Webprog-Chess/site/news_add.php',
+        'Home' => '/Webprog-Chess/site/index.php',
         'Checkers' => '/Webprog-Chess/site/checkers.php',
     )
 );
