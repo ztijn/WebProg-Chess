@@ -21,6 +21,7 @@ function print_latest_positions() {
         let white = data.white;
         let white_king = data.white_king;
         let black_king = data.black_king;
+        let turn = data.turn;
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
                 $('#' + positions_ids[i]).html("<img src='images/piece_black.png'>");

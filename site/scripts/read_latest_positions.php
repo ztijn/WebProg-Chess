@@ -11,6 +11,11 @@ if (isset($_POST['call_now'])) {
         $black = $value["black"];
         $white_king = $value["white_king"];
         $black_king = $value["black_king"];
+        if ($value["turn"]["black_turn"] === 1) {
+            $turn = "black";
+        } else {
+            $turn = "white";
+        }
     }
     // Save html into array
     $export_data = [
@@ -18,6 +23,7 @@ if (isset($_POST['call_now'])) {
         'black' => $black,
         'white_king' => $white_king,
         'black_king' => $black_king,
+        'turn' => $turn,
     ];
     // Return JSON
     header('Content-Type: application/json');

@@ -25,13 +25,6 @@ include __DIR__ . '/tpl/body_start.php';
             </h2>
         </div>
     </div>
-    <form method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
 <?php
 if (!isset($_SESSION['username'])) {
     $_SESSION['username'] = $_POST['username'];
