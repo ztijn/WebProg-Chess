@@ -32,7 +32,7 @@ function p_print($array){
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">WP19 Assignment 3</a>
+        <a class="navbar-brand" href="#">Play Checkers</a>
         <ul class="navbar-nav mr-auto">
             <?php $active = $navigation['active']; ?>
             <?php foreach($navigation['items'] as $title => $url){
@@ -47,21 +47,6 @@ function p_print($array){
                 <?php } ?>
             <?php } ?>
             <!--If not logged in display login option-->
-            <?php if (!isset($_SESSION['username'])) { ?>
-                <form method="post">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-            <!--If logged in display username and logout option-->
-            <?php } else {
-                echo "Logged in as ", ($_SESSION['username']); ?>
-                <form method="post">
-                    <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
-                </form>
-            <?php } ?>
         </ul>
     </nav>
 </header>
