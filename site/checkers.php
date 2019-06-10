@@ -6,6 +6,7 @@ $navigation = Array(
     'items' => Array(
         'Home' => '/Webprog-Chess/site/index.php',
         'Checkers' => '/Webprog-Chess/site/checkers.php',
+        'Rules' => '/Webprog-Chess/site/rules.php',
     )
 );
 include __DIR__ . '/tpl/head.php';

@@ -2,7 +2,7 @@
 /* Header */
 $page_title = 'Rules';
 $navigation = Array(
-    'active' => 'Home',
+    'active' => 'Rules',
     'items' => Array(
         'Home' => '/Webprog-Chess/site/index.php',
         'Checkers' => '/Webprog-Chess/site/checkers.php',
@@ -35,6 +35,7 @@ include __DIR__ . '/tpl/body_start.php';
 
             <h3>Rules of the Game</h3>
 
+            <ul>
             <p>
                 Moves are allowed only on the dark squares, so pieces always move diagonally.
                 Single pieces are always limited to forward moves (toward the opponent).
@@ -67,6 +68,7 @@ include __DIR__ . '/tpl/body_start.php';
             <p>
                 Kings may combine jumps in several directions, forward and backward, on the same turn. Single pieces may shift direction diagonally during a multiple capture turn, but must always jump forward (toward the opponent).
             </p>
+            </ul>
         </div>
     </div>
 

@@ -24,6 +24,25 @@ include __DIR__ . '/tpl/body_start.php';
                 Fill in your username to get started.
             </h2>
         </div>
+
+        <div class="col">
+            <?php if (!isset($_SESSION['username'])) { ?>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <!--If logged in display username and logout option-->
+            <?php } else {
+                echo "Logged in as ", ($_SESSION['username']); ?>
+                <form method="post">
+                    <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
+                </form>
+            <?php } ?>
+
+        </div>
     </div>
 <?php
 if (!isset($_SESSION['username'])) {
