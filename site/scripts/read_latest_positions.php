@@ -1,13 +1,12 @@
 <?php
 session_start();
 if (isset($_POST['call_now'])) {
-    // Read articles
+    // Read games
     $json_file = file_get_contents("../data/checkers.json");
-    $articles = json_decode($json_file, true);
-    $articles = array_reverse($articles);
-    // Generate HTML
-    $articles_html = "";
-    foreach ($articles as $key => $value) {
+    $games = json_decode($json_file, true);
+    $games = array_reverse($games);
+    // Read game data
+    foreach ($games as $key => $value) {
         if ($value["game_id"] === $_SESSION['game_id']) {
             $white = $value["white"];
             $black = $value["black"];
@@ -20,7 +19,7 @@ if (isset($_POST['call_now'])) {
             }
         }
     }
-    // Save html into array
+    // Save data into array
     $export_data = [
         'game_id'  => $_SESSION['game_id'],
         'white' => $white,

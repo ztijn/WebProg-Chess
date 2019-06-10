@@ -1,17 +1,18 @@
 <?php
 session_start();
 if (isset($_POST['call_now'])) {
-    //Send game id with get
     // Read games
     $json_file = file_get_contents("../data/checkers.json");
     $games = json_decode($json_file, true);
-    // Generate game ID
+    //Save game ID
     $game_id = $_SESSION['game_id'];
     foreach ($games as $key => $value){
+        //Select the right game
         if ($game_id == $value['game_id']) {
             $game_key = $key;
         };
     }
+    //Start new game for selected game
     $games[$game_key]= [
         'game_id' => $game_id,
         'white' => ["A9", "C9", "E9", "G9", "I9", "B10", "D10", "F10", "H10", "J10",
@@ -24,11 +25,9 @@ if (isset($_POST['call_now'])) {
             "black_turn" => 1,
             "white_turn:" => 1
         )];
-    // Save game to external file
+    // Save games to external file
     $json_file = fopen('../data/checkers.json', 'w');
     fwrite($json_file, json_encode($games));
     fclose($json_file);
-    // Redirect to game page
-//    header("Location: ../checkers.php?". http_build_query($args));
     die();
 }

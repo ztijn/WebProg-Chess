@@ -5,13 +5,11 @@ function p_print($array){
     print_r($array);
     echo "</pre>";
 }
-?>
-
-<?php
-    session_start();
-    if (!isset($_SESSION['username']) && isset($_POST['username'])){
-        $_SESSION['username'] = $_POST['username'];
-    }
+//Save username
+session_start();
+if (!isset($_SESSION['username']) && isset($_POST['username'])){
+    $_SESSION['username'] = $_POST['username'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +29,7 @@ function p_print($array){
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Play Checkers</a>
+        <a class="navbar-brand" href="./index.php">Play Checkers</a>
         <ul class="navbar-nav mr-auto">
             <?php $active = $navigation['active']; ?>
             <?php foreach($navigation['items'] as $title => $url){

@@ -40,6 +40,7 @@ include __DIR__ . '/tpl/body_start.php';
                 <form method="post">
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
+                <br/>
                 <form action="scripts/add_game.php" method="post">
                     <div class="form-group">
                         <label for="gameid">Game ID</label>
@@ -52,8 +53,6 @@ include __DIR__ . '/tpl/body_start.php';
         </div>
     </div>
 <?php
-if (!isset($_SESSION['username'])) {
-    $_SESSION['username'] = $_POST['username'];
-}
+
 include __DIR__ . '/tpl/body_end.php';
 ?>
