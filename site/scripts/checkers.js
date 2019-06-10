@@ -23,7 +23,7 @@ function print_latest_positions() {
         let black_king = data.black_king;
         let turn = data.turn;
         let game_id = data.game_id;
-        console.log(white);
+        console.log(data);
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
                 $('#' + positions_ids[i]).html("<img src='images/piece_black.png'>");

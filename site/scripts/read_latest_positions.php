@@ -17,6 +17,8 @@ if (isset($_POST['call_now'])) {
             } else {
                 $turn = "white";
             }
+            $player_white = $value["player_white"];
+            $player_black = $value["player_black"];
         }
     }
     // Save data into array
@@ -27,6 +29,9 @@ if (isset($_POST['call_now'])) {
         'white_king' => $white_king,
         'black_king' => $black_king,
         'turn' => $turn,
+        'player_white' => $player_white,
+        'player_black' => $player_black,
+
     ];
     // Return JSON
     header('Content-Type: application/json');
