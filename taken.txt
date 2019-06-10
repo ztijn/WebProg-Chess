@@ -16,6 +16,6 @@ Opmaak site -Adam
 
 Extra
 Animaties
-Spelregels -Adam
-Lobby/meer dan 2 spelers
+Spelregels pagina-Adam
+Lobby/meer dan 2 spelers -Robin -done
 Chat
