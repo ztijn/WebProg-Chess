@@ -40,6 +40,13 @@ include __DIR__ . '/tpl/body_start.php';
                 <form method="post">
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
+                <form action="scripts/add_game.php" method="post">
+                    <div class="form-group">
+                        <label for="gameid">Game ID</label>
+                        <input type="text" class="form-control" id="gameid" name="gameid" placeholder="Enter a game id">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary">Enter game</button>
+                </form>
             <?php } ?>
 
         </div>

@@ -9,6 +9,11 @@ $navigation = Array(
         'Rules' => '/Webprog-Chess/site/rules.php',
     )
 );
+if ( !session_id() ) {
+    session_start();
+}
+$_SESSION['game_id'] = $_GET['game_id'];
+
 include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
 ?>
@@ -40,6 +45,7 @@ include __DIR__ . '/tpl/body_start.php';
         }
         ?>
     </table>
+        <input type="hidden" value="<?php echo $_POST['game_']; ?>">
 
         <div class="col">
             <?php if (!isset($_SESSION['username'])) { ?>
@@ -61,9 +67,8 @@ include __DIR__ . '/tpl/body_start.php';
             <div class="btn btn-primary" id="startbtn" style="margin-top: 15px">
                 Start new game
             </div>
-
+            <?php echo $_SESSION['game_id']?>
         </div>
-
     </div>
 
 
