@@ -8,7 +8,7 @@ if (isset($_POST['call_now'])) {
   \"black\":[\"A1\", \"C1\", \"E1\", \"G1\", \"I1\", \"B2\", \"D2\", \"F2\", \"H2\", \"J2\",
     \"A3\", \"C3\", \"E3\", \"G3\", \"I3\", \"B4\", \"D4\", \"F4\", \"H4\", \"J4\"],
   \"white_king\":[\"\"],
-  \"black_king\":[\"\"]
+  \"black_king\":[\"\"],
   \"turn\": {
     \"black_turn\": 1,
     \"white_turn:\": 0
