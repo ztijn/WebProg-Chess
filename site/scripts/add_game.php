@@ -13,10 +13,12 @@ if (isset($_POST['submit'])) {
     foreach ($games as $key => $value){
         //Check if game exists, if true redirect to game page
         if ($game_id == $value['game_id']) {
-            $games[$key]['player_black'] = $_SESSION['username'];
-            $json_file = fopen('../data/checkers.json', 'w');
-            fwrite($json_file, json_encode($games));
-            fclose($json_file);
+            if ($value['player_black'] === null) {
+                $games[$key]['player_black'] = $_SESSION['username'];
+                $json_file = fopen('../data/checkers.json', 'w');
+                fwrite($json_file, json_encode($games));
+                fclose($json_file);
+            }
             header("Location: ../checkers.php?" . http_build_query($args));
             die();
         }
@@ -34,7 +36,7 @@ if (isset($_POST['submit'])) {
             "black_turn" => 1,
             "white_turn" => 0),
         "player_white" => $_SESSION['username'],
-        "player_black" => "",
+        "player_black" => null,
     ]);
     // Save games to external file
     $json_file = fopen('../data/checkers.json', 'w');

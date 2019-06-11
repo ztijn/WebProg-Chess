@@ -23,10 +23,6 @@ include __DIR__ . '/tpl/body_start.php';
     <script type="application/javascript" src="scripts/checkers.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
-    <!--Create the board as a table-->
-    <div class="row">
-        <h1> Game ID: <?php echo $_SESSION['game_id']?> </h1>
-    </div>
     <div class="row">
         <!--Create the board as a table-->
     <table>
@@ -51,6 +47,15 @@ include __DIR__ . '/tpl/body_start.php';
         ?>
     </table>
         <div class="col">
+            <div class="card">
+                <h5 class="card-header">Game information</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Game ID: <?php echo $_SESSION['game_id']?> </h5>
+                    <p id="blackplayer" class="card-text">Black player: </p>
+                    <p id="whiteplayer" class="card-text">White player: </p>
+                    <div id="startbtn" class="btn btn-primary">Start new game</div>
+                </div>
+            </div>
             <?php if (!isset($_SESSION['username'])) { ?>
                 <form method="post">
                     <div class="form-group">
@@ -66,10 +71,6 @@ include __DIR__ . '/tpl/body_start.php';
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
             <?php } ?>
-
-            <div class="btn btn-primary" id="startbtn" style="margin-top: 15px">
-                Start new game
-            </div>
         </div>
     </div>
 

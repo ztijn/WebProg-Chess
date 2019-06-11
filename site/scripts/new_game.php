@@ -9,6 +9,8 @@ if (isset($_POST['call_now'])) {
     foreach ($games as $key => $value){
         //Select the right game
         if ($game_id == $value['game_id']) {
+            $player_black = $value['player_black'];
+            $player_white = $value['player_white'];
             $game_key = $key;
         };
     }
@@ -23,8 +25,10 @@ if (isset($_POST['call_now'])) {
         "black_king"=> [""],
         "turn" => array(
             "black_turn" => 1,
-            "white_turn:" => 1
-        )];
+            "white_turn:" => 1),
+        "player_white" => $player_white,
+        "player_black" => $player_black,
+    ];
     // Save games to external file
     $json_file = fopen('../data/checkers.json', 'w');
     fwrite($json_file, json_encode($games));
