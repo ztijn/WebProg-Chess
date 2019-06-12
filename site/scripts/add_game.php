@@ -32,9 +32,7 @@ if (isset($_POST['submit'])) {
                     "A3", "C3", "E3", "G3", "I3", "B4", "D4", "F4", "H4", "J4"],
         "white_king" => [""],
         "black_king"=> [""],
-        "turn" => array(
-            "black_turn" => 1,
-            "white_turn" => 0),
+        "turn" => "player_black",
         "player_white" => $_SESSION['username'],
         "player_black" => null,
     ]);

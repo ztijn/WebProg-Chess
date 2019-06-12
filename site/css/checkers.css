@@ -27,3 +27,8 @@ img {
     top: 2px;
     left: 2px;
 }
+
+.selected {
+    background-color: rgba(181,136,99, 0.7);
+
+}

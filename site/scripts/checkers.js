@@ -1,6 +1,62 @@
+function getClicks() {
+    // Define variables
+    let clicked = true;
+    let firstclick = undefined;
+    let secondclick = undefined;
+    let valid = undefined;
+    //Call turn.php which checks whose turn it is
+    let validate = $.post('scripts/turn.php', {call_now: 'True'});
+    validate.done(function (data) {
+        // Returns true or false
+        valid = data;
+    });
+    // Clicking a
+    $("td").click(function() {
+        // If it is players turn
+        if (valid) {
+            if (clicked) {
+                // Check if there is a piece
+                if ($(this).children()[0]) {
+                    // Get id of first click and add class
+                    firstclick = $(this)[0].id;
+                    $('#' + firstclick).addClass("selected");
+                    secondclick = undefined;
+                    clicked = !clicked;
+                }
+            } else if (validMove(firstclick, $(this)[0].id)) {
+                // Get id of second click and remove class
+                secondclick = $(this)[0].id;
+                $('#' + firstclick).removeClass("selected");
+                clicked = !clicked;
+                if (firstclick !== secondclick) {
+                    move(firstclick, secondclick);
+                    print_latest_positions();
+                }
+            }
+            console.log(firstclick, secondclick);
+        }
+        // Update turn
+        validate = $.post('scripts/turn.php', {call_now: 'True'});
+        validate.done(function (data) {
+            valid = data;
+        });
+    })
+}
+
+function validMove(first, second) {
+    let valid = true;
+    let positions_ids = ["A9", "C9", "E9", "G9", "I9", "B10", "D10", "F10", "H10", "J10",
+        "A7", "C7", "E7", "G7", "I7", "B8", "D8", "F8", "H8", "J8", "A1", "C1", "E1", "G1", "I1", "B2", "D2", "F2", "H2", "J2",
+        "A3", "C3", "E3", "G3", "I3", "B4", "D4", "F4", "H4", "J4","A5", "C5","E5", "G5", "I5", "B6", "D6","F6", "H6", "J6"];
+    if (!positions_ids.includes(second)) {
+        valid = false;
+    }
+    return valid;
+}
+
 function move(oldpos, newpos) {
     let move = $.post("scripts/move.php", {call_now: 'True', old_position: oldpos, new_position: newpos});
-    move.done(function (data) {
+    move.done(function () {
         print_latest_positions();
     })
 }
@@ -48,51 +104,35 @@ function print_latest_positions() {
     });
 }
 
-function move_piece () {
-    $("td").click(function () {
-        if ($(this).children()[0]) {
-            let move1 = $(this).attr('id');
-            $("td").click(function () {
-                let move2 = $(this).attr('id');
-                if (move1 && move2) {
-                    let movemade = $.post('scripts/move_piece.php', {moves: [move1, move2]});
-                    movemade.done(function() {
-                        print_latest_positions();
-                    });
-                    move1 = undefined;
-                    move2 = undefined;
-                }
-            });
-        }
-    });
-}
+// function move_piece () {
+//     $("td").click(function () {
+//         if ($(this).children()[0]) {
+//             let move1 = $(this).attr('id');
+//             $("td").click(function () {
+//                 let move2 = $(this).attr('id');
+//                 if (move1 && move2) {
+//                     let movemade = $.post('scripts/move_piece.php', {moves: [move1, move2]});
+//                     movemade.done(function() {
+//                         print_latest_positions();
+//                     });
+//                     move1 = undefined;
+//                     move2 = undefined;
+//                 }
+//             });
+//         }
+//     });
+// }
 
 
 $(function() {
-//    let clicked = true;
-//    let firstclick = undefined;
-//    let secondclick = undefined;
     print_latest_positions();
-    move_piece();
+    getClicks();
     $("#startbtn").click(function() {
         new_game();
     });
     $("#logout").click(function() {
         logout();
     });
-//    $("td").click(function() {
-//        if (clicked){
-//            firstclick = $(this)[0].id;
-//            secondclick = undefined;
-//        } else {
-//            secondclick = $(this)[0].id;
-//            if (firstclick !== secondclick) {
-//                move(firstclick, secondclick);
-//            }
-//        }
-//        clicked = !clicked;
-//        console.log(firstclick, secondclick);
-//    });
     window.setInterval(function () {
         print_latest_positions();
     }, 5000);

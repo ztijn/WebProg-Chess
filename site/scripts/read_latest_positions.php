@@ -12,11 +12,7 @@ if (isset($_POST['call_now'])) {
             $black = $value["black"];
             $white_king = $value["white_king"];
             $black_king = $value["black_king"];
-            if ($value["turn"]["black_turn"] === 1) {
-                $turn = "black";
-            } else {
-                $turn = "white";
-            }
+            $turn = $value["turn"];
             $player_white = $value["player_white"];
             $player_black = $value["player_black"];
         }

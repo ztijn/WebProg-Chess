@@ -13,22 +13,28 @@ if (isset($_POST['call_now'])) {
             $black = $value["black"];
             $white_king = $value["white_king"];
             $black_king = $value["black_king"];
-            if ($value["turn"]["black_turn"] === 1) {
-                $turn = "black";
-            } else {
-                $turn = "white";
-            }
+            $turn = $value["turn"];
             $player_white = $value["player_white"];
             $player_black = $value["player_black"];
-            if (($oldkey = array_search($_POST['old_position'], $white)) !== false) {
-                unset($white[$oldkey]); $white = array_values($white);
-                array_push($white, $_POST['new_position']);
-            } else if (($oldkey = array_search($_POST['old_position'], $black)) !== false) {
-                unset($black[$oldkey]); $black = array_values($black);
-                array_push($black, $_POST['new_position']);
-            }
         }
     }
+
+    // Remove old position and add new position
+    if (($oldkey = array_search($_POST['old_position'], $white)) !== false) {
+        unset($white[$oldkey]); $white = array_values($white);
+        array_push($white, $_POST['new_position']);
+    } else if (($oldkey = array_search($_POST['old_position'], $black)) !== false) {
+        unset($black[$oldkey]); $black = array_values($black);
+        array_push($black, $_POST['new_position']);
+    }
+
+    // Change turn
+    if ($turn === "player_black") {
+        $turn = "player_white";
+    } else {
+        $turn = "player_black";
+    }
+
     // Save data into array
     $games[$game_key] = [
         'game_id'  => $_SESSION['game_id'],
