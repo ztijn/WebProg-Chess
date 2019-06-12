@@ -4,11 +4,13 @@ function getClicks() {
     let firstclick = undefined;
     let secondclick = undefined;
     let valid = undefined;
+    let color = undefined;
     //Call turn.php which checks whose turn it is
     let validate = $.post('scripts/turn.php', {call_now: 'True'});
     validate.done(function (data) {
         // Returns true or false
-        valid = data;
+        valid = data.valid;
+        color = data.class;
     });
     // Clicking a
     $("td").click(function() {
@@ -16,7 +18,8 @@ function getClicks() {
         if (valid) {
             if (clicked) {
                 // Check if there is a piece
-                if ($(this).children()[0]) {
+                console.log($(this).hasClass(color), color, $(this));
+                if ($(this).children()[0] && $(this).hasClass(color)) {
                     // Get id of first click and add class
                     firstclick = $(this)[0].id;
                     $('#' + firstclick).addClass("selected");
@@ -38,7 +41,8 @@ function getClicks() {
         // Update turn
         validate = $.post('scripts/turn.php', {call_now: 'True'});
         validate.done(function (data) {
-            valid = data;
+            valid = data.valid;
+            color = data.class;
         });
     })
 }
@@ -90,15 +94,15 @@ function print_latest_positions() {
         $('#whiteplayer').html("White player: " + data.player_white);
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
-                $('#' + positions_ids[i]).html("<img src='images/piece_black.png'>");
+                $('#' + positions_ids[i]).addClass("black").html("<img src='images/piece_black.png'>");
             } else if (white.includes(positions_ids[i])){
-                $('#' + positions_ids[i]).html("<img src='images/piece_white.png'>");
+                $('#' + positions_ids[i]).addClass("white").html("<img src='images/piece_white.png'>");
             } else if (black_king.includes(positions_ids[i])){
                 $('#' + positions_ids[i]).html("<img src='images/piece_black_king.png'>");
             } else if (white_king.includes(positions_ids[i])){
                 $('#' + positions_ids[i]).html("<img src='images/piece_white_king.png'>");
             } else {
-                $('#' + positions_ids[i]).html("");
+                $('#' + positions_ids[i]).removeClass().html("");
             }
         }
     });

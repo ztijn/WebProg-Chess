@@ -10,12 +10,19 @@ if (isset($_POST['call_now'])) {
         if ($value["game_id"] === $_SESSION['game_id']) {
             $turn = $value["turn"];
             $turn_player = $value[$turn];
+            if ($turn === "player_black") {
+                $class = "black";
+            } else {
+                $class = "white";
+            }
         }
     }
 
     // Save data
     $valid = ($_SESSION['username'] === $turn_player);
-    $export_data = $valid;
+    $export_data = [
+        "valid" => $valid,
+        "class" => $class];
     // Return JSON
     header('Content-Type: application/json');
     echo json_encode($export_data);
