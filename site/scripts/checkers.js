@@ -1,7 +1,11 @@
+function move(oldpos, newpos) {
+    let move = $.post("scripts/move.php", {call_now: 'True', old_position: oldpos, new_position: newpos});
+    move.done(function (data) {
+        print_latest_positions();
+    })
+}
 
 function new_game() {
-    // $.post("scripts/new_game.php", {call_now: "True"});
-    console.log("Hello");
     let newgame = $.post('scripts/new_game.php', {call_now: 'True'});
     newgame.done(function() {
         print_latest_positions();
@@ -23,6 +27,7 @@ function print_latest_positions() {
         let black_king = data.black_king;
         let turn = data.turn;
         let game_id = data.game_id;
+        // console.log(data);
         if (data.player_black !== null) {
             $('#blackplayer').html("Black player: " + data.player_black);
         }
@@ -65,6 +70,9 @@ function move_piece () {
 
 
 $(function() {
+    let clicked = true;
+    let firstclick = undefined;
+    let secondclick = undefined;
     print_latest_positions();
     move_piece();
     $("#startbtn").click(function() {
@@ -72,6 +80,19 @@ $(function() {
     });
     $("#logout").click(function() {
         logout();
+    });
+    $("td").click(function() {
+        if (clicked){
+            firstclick = $(this)[0].id;
+            secondclick = undefined;
+        } else {
+            secondclick = $(this)[0].id;
+            if (firstclick !== secondclick) {
+                move(firstclick, secondclick);
+            }
+        }
+        clicked = !clicked;
+        console.log(firstclick, secondclick);
     });
     window.setInterval(function () {
         print_latest_positions();
