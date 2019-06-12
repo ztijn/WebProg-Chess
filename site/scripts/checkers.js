@@ -69,9 +69,9 @@ function move_piece () {
 
 
 $(function() {
-    let clicked = true;
-    let firstclick = undefined;
-    let secondclick = undefined;
+//    let clicked = true;
+//    let firstclick = undefined;
+//    let secondclick = undefined;
     print_latest_positions();
     move_piece();
     $("#startbtn").click(function() {
@@ -80,19 +80,19 @@ $(function() {
     $("#logout").click(function() {
         logout();
     });
-    $("td").click(function() {
-        if (clicked){
-            firstclick = $(this)[0].id;
-            secondclick = undefined;
-        } else {
-            secondclick = $(this)[0].id;
-            if (firstclick !== secondclick) {
-                move(firstclick, secondclick);
-            }
-        }
-        clicked = !clicked;
-        console.log(firstclick, secondclick);
-    });
+//    $("td").click(function() {
+//        if (clicked){
+//            firstclick = $(this)[0].id;
+//            secondclick = undefined;
+//        } else {
+//            secondclick = $(this)[0].id;
+//            if (firstclick !== secondclick) {
+//                move(firstclick, secondclick);
+//            }
+//        }
+//        clicked = !clicked;
+//        console.log(firstclick, secondclick);
+//    });
     window.setInterval(function () {
         print_latest_positions();
     }, 5000);

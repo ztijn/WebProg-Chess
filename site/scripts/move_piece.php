@@ -15,11 +15,7 @@ if (isset($_POST['moves'])) {
             $white_pieces = $value['white'];
             $white_king = $value["white_king"];
             $black_king = $value["black_king"];
-            if ($value["turn"]["black_turn"] === 1) {
-                $turn = "black";
-            } else {
-                $turn = "white";
-            }
+            $turn = $value["turn"];
             $game_key = $key;
         };
     }
