@@ -55,7 +55,6 @@ function move_piece () {
             $("td").click(function () {
                 let move2 = $(this).attr('id');
                 if (move1 && move2) {
-                    console.log(move1, move2);
                     let movemade = $.post('scripts/move_piece.php', {moves: [move1, move2]});
                     movemade.done(function() {
                         print_latest_positions();

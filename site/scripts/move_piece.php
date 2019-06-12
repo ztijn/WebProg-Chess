@@ -13,21 +13,23 @@ if (isset($_POST['moves'])) {
             $player_white = $value['player_white'];
             $black_pieces = $value['black'];
             $white_pieces = $value['white'];
+            $white_king = $value["white_king"];
+            $black_king = $value["black_king"];
+            if ($value["turn"]["black_turn"] === 1) {
+                $turn = "black";
+            } else {
+                $turn = "white";
+            }
             $game_key = $key;
         };
     }
     //Start new game for selected game
-    echo $_POST;
     if (in_array($_POST['moves'][0], $black_pieces)) {
         array_push($black_pieces, $_POST['moves'][1]);
-        //$bkey = array_search($_POST['moves'][0], $black_pieces);
-        //unset($black_pieces[$bkey]);
         $bp = array_values(array_diff($black_pieces, [$_POST['moves'][0]]));
         $wp = $white_pieces;
     } else {
         array_push($white_pieces, $_POST['moves'][1]);
-        //$wkey = array_search($_POST['moves'][0], $white_pieces);
-        //unset($white_pieces[$wkey]);
         $wp = array_values(array_diff($white_pieces, [$_POST['moves'][0]]));
         $bp = $black_pieces;
     }
@@ -35,13 +37,11 @@ if (isset($_POST['moves'])) {
         'game_id' => $game_id,
         'white' => $wp,
         'black' => $bp,
-        "white_king" => [""],
-        "black_king"=> [""],
-        "turn" => array(
-            "black_turn" => 1,
-            "white_turn:" => 1),
-        "player_white" => $_POST['moves'][0],
-        "player_black" => $_POST['moves'][1],
+        'white_king' => $white_king,
+        'black_king' => $black_king,
+        'turn' => $turn,
+        "player_white" => $player_white,
+        "player_black" => $player_black,
     ];
     // Save games to external file
     $json_file = fopen('../data/checkers.json', 'w');
