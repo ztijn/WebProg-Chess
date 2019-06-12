@@ -91,6 +91,11 @@ function print_latest_positions() {
         if (data.player_black !== null) {
             $('#blackplayer').html("Black player: " + data.player_black);
         }
+        if (turn === "player_black") {
+            $('#colorturn').html("Turn: Black");
+        } else {
+            $('#colorturn').html("Turn: White");
+        }
         $('#whiteplayer').html("White player: " + data.player_white);
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
