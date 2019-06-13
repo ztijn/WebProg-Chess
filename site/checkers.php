@@ -21,7 +21,6 @@ include __DIR__ . '/tpl/body_start.php';
 ?>
     <!--Script and style-->
     <script type="application/javascript" src="scripts/checkers.js"></script>
-    <script type="application/javascript" src="scripts/login.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
     <div class="container">

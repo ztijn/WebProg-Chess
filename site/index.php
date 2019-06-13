@@ -13,7 +13,6 @@ include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
 ?>
     <script type="application/javascript" src="scripts/main.js"></script>
-    <script type="application/javascript" src="scripts/login.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
     <div class="container">
