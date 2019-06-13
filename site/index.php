@@ -32,7 +32,7 @@ include __DIR__ . '/tpl/body_start.php';
 
         <div class="col">
             <?php if (!isset($_SESSION['username'])) { ?>
-                <form target="_self" action="checkers.php" method="post">
+                <form target="_self" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
@@ -43,13 +43,23 @@ include __DIR__ . '/tpl/body_start.php';
             <?php } else {
                 echo "Logged in as ", ($_SESSION['username']); ?>
                 <form method="post">
-                    <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
+                    <button type="submit" id="logout" class="btn btn-secondary" >Log out</button>
                 </form>
+                <div class="card">
+                    <form action="scripts/add_game.php" method="post">
+                        <div class="form-group">
+                            <label for="gameid">Game ID</label>
+                            <input type="text" class="form-control" id="gameid" name="gameid" placeholder="Enter a game id">
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary">Enter game</button>
+                    </form>
+                </div>
             <?php } ?>
         </div>
         <div class="row">
             <img src="images/checkers.jpeg" alt="checkers" id="checkersimg">
         </div>
+
     </div>
     </div>
 <?php

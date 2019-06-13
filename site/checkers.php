@@ -53,7 +53,7 @@ include __DIR__ . '/tpl/body_start.php';
                 <h5 class="card-header">Game information</h5>
                 <div class="card-body">
                     <h5 class="card-title">Game ID: <?php echo $_SESSION['game_id']?> </h5>
-                    <p id="blackplayer" class="card-text">Black player: <?php echo $_SESSION['username']?> </p>
+                    <p id="blackplayer" class="card-text">Black player: </p>
                     <p id="whiteplayer" class="card-text">White player: </p>
                     <p id="colorturn" class="card-text">Turn: Black</p>
                     <div id="startbtn" class="btn btn-primary">Start new game</div>
