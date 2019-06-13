@@ -21,6 +21,7 @@ include __DIR__ . '/tpl/body_start.php';
 ?>
     <!--Script and style-->
     <script type="application/javascript" src="scripts/checkers.js"></script>
+    <script type="application/javascript" src="scripts/login.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
     <div class="row">
@@ -63,7 +64,7 @@ include __DIR__ . '/tpl/body_start.php';
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div id="submit" class="btn btn-primary">Login</div>
                 </form>
                 <!--If logged in display username and logout option-->
             <?php } else {
