@@ -52,7 +52,7 @@ include __DIR__ . '/tpl/body_start.php';
                 <h5 class="card-header">Game information</h5>
                 <div class="card-body">
                     <h5 class="card-title">Game ID: <?php echo $_SESSION['game_id']?> </h5>
-                    <p id="blackplayer" class="card-text">Black player: </p>
+                    <p id="blackplayer" class="card-text">Black player: <?php echo $_SESSION['username']?> </p>
                     <p id="whiteplayer" class="card-text">White player: </p>
                     <p id="colorturn" class="card-text">Turn: Black</p>
                     <div id="startbtn" class="btn btn-primary">Start new game</div>
@@ -69,14 +69,12 @@ include __DIR__ . '/tpl/body_start.php';
                 <!--If logged in display username and logout option-->
             <?php } else {
                 echo "Logged in as ", ($_SESSION['username']); ?>
-                <form method="post">
+                <form target="_blank" action="index.php" method="post">
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
             <?php } ?>
         </div>
     </div>
-
-
 <?php
 include __DIR__ . '/tpl/body_end.php';
 ?>
