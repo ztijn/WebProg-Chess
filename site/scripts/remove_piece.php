@@ -24,6 +24,10 @@ if (isset($_POST['call_now'])) {
         unset($white[$oldkey]); $white = array_values($white);
     } else if (($oldkey = array_search($_POST['remove_piece'], $black)) !== false) {
         unset($black[$oldkey]); $black = array_values($black);
+    } else if (($oldkey = array_search($_POST['remove_piece'], $white_king)) !== false) {
+        unset($white_king[$oldkey]); $white_king = array_values($white_king);
+    } else if (($oldkey = array_search($_POST['remove_piece'], $black_king)) !== false) {
+        unset($black_king[$oldkey]); $black_king = array_values($black_king);
     }
 
     // Save data into array

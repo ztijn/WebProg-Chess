@@ -29,7 +29,6 @@ include __DIR__ . '/tpl/body_start.php';
             </h2>
         </div>
 
-        <div class="col">
             <?php if (!isset($_SESSION['username'])) { ?>
                 <form target="_self" method="post">
                     <div class="form-group">
@@ -39,27 +38,38 @@ include __DIR__ . '/tpl/body_start.php';
                     <div id="submit" class="btn btn-primary">Login</div>
                 </form>
                 <!--If logged in display username and logout option-->
-            <?php } else {
-                echo "Logged in as ", ($_SESSION['username']); ?>
-                <form method="post">
-                    <button type="submit" id="logout" class="btn btn-secondary" >Log out</button>
-                </form>
-                <div class="card">
+            <?php } else { ?>
+                <div class="card col col-md-3">
+                    <div class="card-header bg-transparent">
+                        <h5 class="card-title text-center">Game ID</h5>
+                    </div>
                     <form action="scripts/add_game.php" method="post">
-                        <div class="form-group">
-                            <label for="gameid">Game ID</label>
+                        <div class="form-group card-body">
                             <input type="text" class="form-control" id="gameid" name="gameid" placeholder="Enter a game id">
                         </div>
-                        <button type="submit" name="submit" class="btn btn-primary">Enter game</button>
+                        <div class="card-footer bg-transparent text-center">
+                            <button type="submit" name="submit" class="btn btn-primary">Enter game</button>
+                        </div>
                     </form>
+                </div>
+                <div class="card col col-md-3">
+                    <div class="card-header bg-transparent">
+                        <h5 class="card-title text-center"> User </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"> <?php echo "Logged in as ", ($_SESSION['username']); ?> </p>
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <form method="post">
+                            <button type="submit" id="logout" class="btn btn-secondary" >Log out</button>
+                        </form>
+                    </div>
                 </div>
             <?php } ?>
         </div>
         <div class="row">
             <img src="images/checkers.jpeg" alt="checkers" id="checkersimg">
         </div>
-
-    </div>
     </div>
 <?php
 

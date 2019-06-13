@@ -29,7 +29,7 @@ include __DIR__ . '/tpl/body_start.php';
     <table>
         <?php
         $Letters = array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
-        $number = 11;
+        $number = 10;
         for ($row = 1; $row <= 10; $row++) {
             $number = $number - 1;
             $i = -1;

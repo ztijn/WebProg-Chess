@@ -19,14 +19,32 @@ if (isset($_POST['call_now'])) {
         }
     }
 
+    $upgrade_black = ["B9", "D9", "F9", "H9", "J9"];
+    $upgrade_white = ["A0", "C0", "E0", "G0", "I0"];
+
     // Remove old position and add new position
     if (($oldkey = array_search($_POST['old_position'], $white)) !== false) {
         unset($white[$oldkey]); $white = array_values($white);
-        array_push($white, $_POST['new_position']);
+        if (array_search($_POST['new_position'], $upgrade_white)) {
+            array_push($white_king, $_POST['new_position']);
+        } else {
+            array_push($white, $_POST['new_position']);
+        }
     } else if (($oldkey = array_search($_POST['old_position'], $black)) !== false) {
         unset($black[$oldkey]); $black = array_values($black);
-        array_push($black, $_POST['new_position']);
+        if (array_search($_POST['new_position'], $upgrade_black)) {
+            array_push($black_king, $_POST['new_position']);
+        } else {
+            array_push($black, $_POST['new_position']);
+        }
+    } else if (($oldkey = array_search($_POST['old_position'], $black_king)) !== false) {
+        unset($black_king[$oldkey]); $black_king = array_values($black_king);
+        array_push($black_king, $_POST['new_position']);
+    } else if (($oldkey = array_search($_POST['old_position'], $white_king)) !== false) {
+            unset($white_king[$oldkey]); $white_king = array_values($white_king);
+            array_push($white_king, $_POST['new_position']);
     }
+
 
     // Change turn
     if ($turn === "player_black") {

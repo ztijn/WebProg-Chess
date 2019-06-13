@@ -20,7 +20,8 @@ function getClicks() {
         if (validTurn) {
             if (clicked) {
                 // Check if there is a piece
-                if ($(this).children()[0] && $(this).hasClass(color)) {
+                console.log(color);
+                if ($(this).children()[0] && ($(this).hasClass(color) || $(this).hasClass(color+"_king"))) {
                     // Get id of first click and add class
                     firstclick = $(this)[0];
                     $(this).addClass("selected");
@@ -59,16 +60,16 @@ function getPossibleMoves(first) {
     const letterToNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     let possibleMoves = [];
     let hitMoves = {};
-    if ($(first).hasClass("black")) {
+    if ($(first).hasClass("black") || $(first).hasClass("black_king")) {
         possibleMoves = [
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 + 1),
         ];
-        if ($("#"+possibleMoves[0]).hasClass("white")) {
+        if ($("#"+possibleMoves[0]).hasClass("white") || $("#"+possibleMoves[0]).hasClass("white_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2)] = possibleMoves[0];
         }
-        if ($("#"+possibleMoves[1]).hasClass("white")) {
+        if ($("#"+possibleMoves[1]).hasClass("white") || $("#"+possibleMoves[1]).hasClass("white_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2)] = possibleMoves[1];
         }
@@ -76,24 +77,27 @@ function getPossibleMoves(first) {
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 - 1),
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 - 1),
         ];
-        if ($("#"+backwardMoves[0]).hasClass("white")) {
+        if ($("#"+backwardMoves[0]).hasClass("white") || $("#"+backwardMoves[0]).hasClass("white_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2)] = backwardMoves[0];
         }
-        if ($("#"+backwardMoves[1]).hasClass("white")) {
+        if ($("#"+backwardMoves[1]).hasClass("white") || $("#"+backwardMoves[1]).hasClass("white_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2)] = backwardMoves[1];
         }
-    } else if ($(first).hasClass("white")) {
+        if ($(first).hasClass("black_king")) {
+            possibleMoves = possibleMoves.concat(backwardMoves);
+        }
+    } else if ($(first).hasClass("white") || $(first).hasClass("white_king")) {
         possibleMoves = [
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 - 1),
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 - 1),
         ];
-        if ($("#"+possibleMoves[0]).hasClass("black")) {
+        if ($("#"+possibleMoves[0]).hasClass("black") || $("#"+possibleMoves[0]).hasClass("black_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2)] = possibleMoves[0];
         }
-        if ($("#"+possibleMoves[1]).hasClass("black")) {
+        if ($("#"+possibleMoves[1]).hasClass("black") || $("#"+possibleMoves[1]).hasClass("black_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2)] = possibleMoves[1];
         }
@@ -101,19 +105,23 @@ function getPossibleMoves(first) {
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 + 1),
         ];
-        if ($("#"+backwardMoves[0]).hasClass("black")) {
+        if ($("#"+backwardMoves[0]).hasClass("black") || $("#"+backwardMoves[0]).hasClass("black_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2)] = backwardMoves[0];
         }
-        if ($("#"+backwardMoves[1]).hasClass("black")) {
+        if ($("#"+backwardMoves[1]).hasClass("black") || $("#"+backwardMoves[1]).hasClass("black_king")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
             hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2)] = backwardMoves[1];
+        }
+        if ($(first).hasClass("white_king")) {
+            possibleMoves = possibleMoves.concat(backwardMoves);
         }
     }
     for (let i = possibleMoves.length-1; i>=0; i--) {
         if (!$("#"+possibleMoves[i]).hasClass("field")) {
             possibleMoves.splice(i, 1);
-        } else if ($("#"+possibleMoves[i]).hasClass("white") || $("#"+possibleMoves[i]).hasClass("black")) {
+        } else if ($("#"+possibleMoves[i]).hasClass("white") || $("#"+possibleMoves[i]).hasClass("black")
+            || $("#"+possibleMoves[i]).hasClass("white_king") || $("#"+possibleMoves[i]).hasClass("black_king")) {
             possibleMoves.splice(i, 1);
         } else {
             $("#"+possibleMoves[i]).addClass("possible");
@@ -124,7 +132,6 @@ function getPossibleMoves(first) {
 
 function validateMove(possible, hit, first, second) {
     let valid = true;
-    console.log(hit);
     if (possible.includes(second.id)) {
         if (hit !== undefined && second.id in hit) {
             let remove = $.post("scripts/remove_piece.php", {call_now: 'True', remove_piece: hit[second.id]});
@@ -181,11 +188,11 @@ function print_latest_positions() {
             } else if (white.includes(positions_ids[i])){
                 $('#' + positions_ids[i]).addClass("white").html("<img src='images/piece_white.png'>");
             } else if (black_king.includes(positions_ids[i])){
-                $('#' + positions_ids[i]).html("<img src='images/piece_black_king.png'>");
+                $('#' + positions_ids[i]).addClass("black_king").html("<img src='images/piece_black_king.png'>");
             } else if (white_king.includes(positions_ids[i])){
-                $('#' + positions_ids[i]).html("<img src='images/piece_white_king.png'>");
+                $('#' + positions_ids[i]).addClass("white_king").html("<img src='images/piece_white_king.png'>");
             } else {
-                $('#' + positions_ids[i]).removeClass("black white").html("");
+                $('#' + positions_ids[i]).removeClass("black white white_king black_king").html("");
             }
         }
     });
