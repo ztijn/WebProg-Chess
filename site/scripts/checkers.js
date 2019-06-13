@@ -3,37 +3,39 @@ function getClicks() {
     let clicked = true;
     let firstclick = undefined;
     let secondclick = undefined;
-    let valid = undefined;
+    let validTurn = undefined;
     let color = undefined;
     //Call turn.php which checks whose turn it is
     let validate = $.post('scripts/turn.php', {call_now: 'True'});
     validate.done(function (data) {
         // Returns true or false
-        valid = data.valid;
+        validTurn = data.valid;
         color = data.class;
     });
     // Clicking a
     $("td").click(function() {
         // If it is players turn
-        if (valid) {
+        if (validTurn) {
             if (clicked) {
                 // Check if there is a piece
                 if ($(this).children()[0] && $(this).hasClass(color)) {
                     // Get id of first click and add class
-                    firstclick = $(this)[0].id;
-                    $('#' + firstclick).addClass("selected");
+                    firstclick = $(this)[0];
+                    $(this).addClass("selected");
                     secondclick = undefined;
                     clicked = !clicked;
                 }
+            } else if (firstclick === $(this)[0]) {
+                console.log("same")
+                $('#' + firstclick.id).removeClass("selected");
+                clicked = !clicked;
             } else if (validMove(firstclick, $(this)[0])) {
                 // Get id of second click and remove class
-                secondclick = $(this)[0].id;
-                $('#' + firstclick).removeClass("selected");
+                secondclick = $(this)[0];
+                $('#' + firstclick.id).removeClass("selected");
                 clicked = !clicked;
-                if (firstclick !== secondclick) {
-                    move(firstclick, secondclick);
-                    print_latest_positions();
-                }
+                move(firstclick.id, secondclick.id);
+                print_latest_positions();
             }
         }
         // Update turn
@@ -47,9 +49,19 @@ function getClicks() {
 
 function validMove(first, second) {
     let valid = true;
-    let numbers = [-1, 1];
-    if (!numbers.includes(first[1] - second.id[1])) {
+    let validHorizontal = [-1, 1];
+    let letterToNumbers = {"A": 1, "B": 2, "C":3, "D":4, "E":5, "F": 6, "G": 7, "H":8, "I":9, "J":10};
+    console.log(letterToNumbers[first.id[0]] - letterToNumbers[second.id[0]]);
+    if (!validHorizontal.includes((letterToNumbers[first.id[0]] - letterToNumbers[second.id[0]]))) {
         valid = false;
+    } else if ($(first).hasClass("white")) {
+        if ((first.id[1] - second.id[1]) !== 1) {
+            valid = false;
+        }
+    } else if ($(first).hasClass("black")) {
+        if ((first.id[1] - second.id[1]) !== -1) {
+            valid = false;
+        }
     } else if (!$(second).hasClass("field")) {
         valid = false;
     } else if ($(second).hasClass("white") || $(second).hasClass("black")) {
