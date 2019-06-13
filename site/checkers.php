@@ -39,7 +39,7 @@ include __DIR__ . '/tpl/body_start.php';
                 if ($total % 2 == 0) {
                     echo "<td bgcolor=#f0d9b5 id='$Letters[$i]$number'></td>";
                 } else {
-                    echo "<td bgcolor=#b58863 id='$Letters[$i]$number'></td>";
+                    echo "<td bgcolor=#b58863 class='field' id='$Letters[$i]$number'></td>";
                 }
             }
             echo "</tr>";
