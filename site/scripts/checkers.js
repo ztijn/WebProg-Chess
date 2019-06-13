@@ -5,6 +5,7 @@ function getClicks() {
     let secondclick = undefined;
     let validTurn = undefined;
     let color = undefined;
+    let possibleMoves = undefined;
     //Call turn.php which checks whose turn it is
     let validate = $.post('scripts/turn.php', {call_now: 'True'});
     validate.done(function (data) {
@@ -21,17 +22,22 @@ function getClicks() {
                     // Get id of first click and add class
                     firstclick = $(this)[0];
                     $(this).addClass("selected");
+                    possibleMoves = getPossibleMoves($(this)[0]);
                     secondclick = undefined;
                     clicked = !clicked;
                 }
             } else if (firstclick === $(this)[0]) {
                 $('#' + firstclick.id).removeClass("selected");
+                $(".possible").removeClass("possible");
                 clicked = !clicked;
-            } else if (validateMove(firstclick, $(this)[0])) {
+                possibleMoves = undefined;
+            } else if (validateMove(possibleMoves, $(this)[0])) {
                 // Get id of second click and remove class
                 secondclick = $(this)[0];
                 $('#' + firstclick.id).removeClass("selected");
+                $(".possible").removeClass("possible");
                 clicked = !clicked;
+                possibleMoves = undefined;
                 move(firstclick.id, secondclick.id);
                 print_latest_positions();
             }
@@ -45,28 +51,68 @@ function getClicks() {
     })
 }
 
-function validateMove(first, second) {
+function getPossibleMoves(first) {
+    const letterToNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+    let possibleMoves = [];
+    if ($(first).hasClass("black")) {
+        possibleMoves = [
+            letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
+            letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 + 1),
+        ];
+        if ($("#"+possibleMoves[0]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
+        }
+        if ($("#"+possibleMoves[1]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
+        }
+        let backwardMoves = [
+            letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 - 1),
+            letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 - 1),
+        ];
+        if ($("#"+backwardMoves[0]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
+        }
+        if ($("#"+backwardMoves[1]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
+        }
+    } else if ($(first).hasClass("white")) {
+        possibleMoves = [
+            letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 - 1),
+            letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 - 1),
+        ];
+        if ($("#"+possibleMoves[0]).hasClass("black")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
+        }
+        if ($("#"+possibleMoves[1]).hasClass("black")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
+        }
+        let backwardMoves = [
+            letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
+            letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 + 1),
+        ];
+        if ($("#"+backwardMoves[0]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
+        }
+        if ($("#"+backwardMoves[1]).hasClass("white")) {
+            possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
+        }
+    }
+    for (let i = possibleMoves.length-1; i>=0; i--) {
+        if (!$("#"+possibleMoves[i]).hasClass("field")) {
+            possibleMoves.splice(i, 1);
+        } else if ($("#"+possibleMoves[i]).hasClass("white") || $("#"+possibleMoves[i]).hasClass("black")) {
+            possibleMoves.splice(i, 1);
+        } else {
+            $("#"+possibleMoves[i]).addClass("possible");
+        }
+    }
+    return possibleMoves;
+}
+
+function validateMove(possible, second) {
     let valid = true;
-    let validHorizontal = [-1, 1];
-    let letterToNumbers = {"A": 1, "B": 2, "C":3, "D":4, "E":5, "F": 6, "G": 7, "H":8, "I":9, "J":10};
-    // Check if column difference is not more than 1 square
-    if (!validHorizontal.includes((letterToNumbers[first.id[0]] - letterToNumbers[second.id[0]]))) {
-        valid = false;
-    } if ($(first).hasClass("white")) {
-        // Move down only
-        if ((first.id[1] - second.id[1]) !== 1) {
-            valid = false;
-        }
-    } if ($(first).hasClass("black")) {
-        // Move up only
-        if ((first.id[1] - second.id[1]) !== -1) {
-            valid = false;
-        }
-    } if (!$(second).hasClass("field")) {
-        // Check for valid position
-        valid = false;
-    } if ($(second).hasClass("white") || $(second).hasClass("black")) {
-        // Prevent moving onto other piece
+
+    if (!possible.includes(second.id)) {
         valid = false;
     }
     return valid;

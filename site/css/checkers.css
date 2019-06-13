@@ -32,3 +32,9 @@ img {
     background-color: rgba(181,136,99, 0.7);
 
 }
+
+.possible {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #42f448;
+}
