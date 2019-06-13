@@ -69,7 +69,7 @@ include __DIR__ . '/tpl/body_start.php';
                 <!--If logged in display username and logout option-->
             <?php } else {
                 echo "Logged in as ", ($_SESSION['username']); ?>
-                <form target="_blank" action="index.php" method="post">
+                <form target="_self" action="index.php" method="post">
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
             <?php } ?>

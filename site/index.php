@@ -28,7 +28,7 @@ include __DIR__ . '/tpl/body_start.php';
 
         <div class="col">
             <?php if (!isset($_SESSION['username'])) { ?>
-                <form target="_blank" action="checkers.php" method="post">
+                <form target="_self" action="checkers.php" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
