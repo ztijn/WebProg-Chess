@@ -5,7 +5,9 @@ function getClicks() {
     let secondclick = undefined;
     let validTurn = undefined;
     let color = undefined;
+    let getMoves = undefined;
     let possibleMoves = undefined;
+    let hitMoves = undefined;
     //Call turn.php which checks whose turn it is
     let validate = $.post('scripts/turn.php', {call_now: 'True'});
     validate.done(function (data) {
@@ -22,7 +24,9 @@ function getClicks() {
                     // Get id of first click and add class
                     firstclick = $(this)[0];
                     $(this).addClass("selected");
-                    possibleMoves = getPossibleMoves($(this)[0]);
+                    getMoves = getPossibleMoves($(this)[0]);
+                    possibleMoves = getMoves[0];
+                    hitMoves = getMoves[1];
                     secondclick = undefined;
                     clicked = !clicked;
                 }
@@ -31,7 +35,7 @@ function getClicks() {
                 $(".possible").removeClass("possible");
                 clicked = !clicked;
                 possibleMoves = undefined;
-            } else if (validateMove(possibleMoves, $(this)[0])) {
+            } else if (validateMove(possibleMoves, hitMoves, firstclick, $(this)[0])) {
                 // Get id of second click and remove class
                 secondclick = $(this)[0];
                 $('#' + firstclick.id).removeClass("selected");
@@ -54,6 +58,7 @@ function getClicks() {
 function getPossibleMoves(first) {
     const letterToNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     let possibleMoves = [];
+    let hitMoves = {};
     if ($(first).hasClass("black")) {
         possibleMoves = [
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
@@ -61,9 +66,11 @@ function getPossibleMoves(first) {
         ];
         if ($("#"+possibleMoves[0]).hasClass("white")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2)] = possibleMoves[0];
         }
         if ($("#"+possibleMoves[1]).hasClass("white")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2)] = possibleMoves[1];
         }
         let backwardMoves = [
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 - 1),
@@ -71,9 +78,11 @@ function getPossibleMoves(first) {
         ];
         if ($("#"+backwardMoves[0]).hasClass("white")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2)] = backwardMoves[0];
         }
         if ($("#"+backwardMoves[1]).hasClass("white")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2)] = backwardMoves[1];
         }
     } else if ($(first).hasClass("white")) {
         possibleMoves = [
@@ -82,19 +91,23 @@ function getPossibleMoves(first) {
         ];
         if ($("#"+possibleMoves[0]).hasClass("black")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 - 2)] = possibleMoves[0];
         }
         if ($("#"+possibleMoves[1]).hasClass("black")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 - 2)] = possibleMoves[1];
         }
         let backwardMoves = [
             letterToNumber[letterToNumber.indexOf(first.id[0])+1] + (first.id[1]*1 + 1),
             letterToNumber[letterToNumber.indexOf(first.id[0])-1] + (first.id[1]*1 + 1),
         ];
-        if ($("#"+backwardMoves[0]).hasClass("white")) {
+        if ($("#"+backwardMoves[0]).hasClass("black")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])+2] + (first.id[1]*1 + 2)] = backwardMoves[0];
         }
-        if ($("#"+backwardMoves[1]).hasClass("white")) {
+        if ($("#"+backwardMoves[1]).hasClass("black")) {
             possibleMoves.push(letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2));
+            hitMoves[letterToNumber[letterToNumber.indexOf(first.id[0])-2] + (first.id[1]*1 + 2)] = backwardMoves[1];
         }
     }
     for (let i = possibleMoves.length-1; i>=0; i--) {
@@ -106,13 +119,20 @@ function getPossibleMoves(first) {
             $("#"+possibleMoves[i]).addClass("possible");
         }
     }
-    return possibleMoves;
+    return [possibleMoves, hitMoves];
 }
 
-function validateMove(possible, second) {
+function validateMove(possible, hit, first, second) {
     let valid = true;
-
-    if (!possible.includes(second.id)) {
+    console.log(hit);
+    if (possible.includes(second.id)) {
+        if (hit !== undefined && second.id in hit) {
+            let remove = $.post("scripts/remove_piece.php", {call_now: 'True', remove_piece: hit[second.id]});
+            remove.done(function () {
+                print_latest_positions();
+            })
+        }
+    } else {
         valid = false;
     }
     return valid;
