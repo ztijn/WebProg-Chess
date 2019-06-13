@@ -24,6 +24,7 @@ include __DIR__ . '/tpl/body_start.php';
     <script type="application/javascript" src="scripts/login.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
+    <div class="container">
     <div class="row">
         <!--Create the board as a table-->
     <table>
@@ -75,6 +76,9 @@ include __DIR__ . '/tpl/body_start.php';
             <?php } ?>
         </div>
     </div>
+    </div>
+
+
 <?php
 include __DIR__ . '/tpl/body_end.php';
 ?>

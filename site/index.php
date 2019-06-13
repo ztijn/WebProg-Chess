@@ -14,6 +14,9 @@ include __DIR__ . '/tpl/body_start.php';
 ?>
     <script type="application/javascript" src="scripts/main.js"></script>
     <script type="application/javascript" src="scripts/login.js"></script>
+    <link rel="stylesheet" href="css/checkers.css">
+
+    <div class="container">
     <div class="pd-40"></div>
     <div class="row">
         <div class="col-md-12" id="introduction">
@@ -22,7 +25,8 @@ include __DIR__ . '/tpl/body_start.php';
             </h1>
 
             <h2>
-                Fill in your username to get started.
+                Here you can play checkers against your friends or a random player! Read the rules of the game to learn more about checkers
+                or fill in your username to get started in a game.
             </h2>
         </div>
 
@@ -42,8 +46,11 @@ include __DIR__ . '/tpl/body_start.php';
                     <button type="submit" id="logout" class="btn btn-secondary">Log out</button>
                 </form>
             <?php } ?>
-
         </div>
+        <div class="row">
+            <img src="images/checkers.jpeg" alt="checkers" id="checkersimg">
+        </div>
+    </div>
     </div>
 <?php
 

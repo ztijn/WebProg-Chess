@@ -38,3 +38,22 @@ img {
     border-width: 2px;
     border-color: #42f448;
 }
+
+.col-md-12{
+    text-align: center;
+}
+
+h1{
+    font-size: 100px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+#checkersimg{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 100%;
+}
