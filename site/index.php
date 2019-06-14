@@ -27,19 +27,37 @@ include __DIR__ . '/tpl/body_start.php';
         <img src="images/checkers.jpeg" alt="checkers" id="checkersimg">
     </div>
     <div class="row">
+        <div class="col-md-3"></div>
         <?php if (!isset($_SESSION['username'])) { ?>
-        <div class="card col col-md-3">
-            <form target="_self" method="post">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+            <div class="card col col-md-3">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title text-center">Game ID</h5>
                 </div>
-                <div id="submit" class="btn btn-primary">Login</div>
-            </form>
-        </div>
+                <form>
+                    <div class="form-group card-body">
+                        <input type="text" class="form-control" id="gameid" name="gameid" aria-describedby="loginFirst" placeholder="Enter a game id">
+                        <small id="loginFirst" class="form-text text-danger text-center">Please login first!</small>
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <div class="btn btn-secondary" id="entergame">Enter game</div>
+                    </div>
+                </form>
+            </div>
+            <div class="card col col-md-3">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title text-center">Username</h5>
+                </div>
+                <form target="_self" method="post">
+                    <div class="form-group card-body">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+                    </div>
+                    <div class="card-footer bg-transparent text-center">
+                        <div id="submit" class="btn btn-primary">Login</div>
+                    </div>
+                </form>
+            </div>
             <!--If logged in display username and logout option-->
         <?php } else { ?>
-            <div class="col-md-3"></div>
             <div class="card col col-md-3">
                 <div class="card-header bg-transparent">
                     <h5 class="card-title text-center">Game ID</h5>
@@ -71,8 +89,8 @@ include __DIR__ . '/tpl/body_start.php';
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-3"></div>
         <?php } ?>
+        <div class="col-md-3"></div>
         </div>
 
 <?php

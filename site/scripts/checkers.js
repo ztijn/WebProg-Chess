@@ -11,7 +11,7 @@ function getClicks() {
         color = data.class;
     });
     $("td").click(function() {
-        console.log(validTurn. user);
+        print_latest_positions();
         // If it is players turn
         if (validTurn) {
             if (clicked) {
