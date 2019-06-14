@@ -1,5 +1,17 @@
 <?php
 session_start();
+function generateRandomString($length = 6) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+if (isset($_GET['submit'])) {
+    $_POST['submit'] = 'true';
+    $_POST['gameid'] = generateRandomString();
+}
+
+if (!isset($_SESSION['username'])) {
+    header("Location: ../index.php");
+}
+
 if (isset($_POST['submit'])) {
     //Send game id with get
     $args = array(
@@ -13,7 +25,7 @@ if (isset($_POST['submit'])) {
     foreach ($games as $key => $value){
         //Check if game exists, if true redirect to game page
         if ($game_id == $value['game_id']) {
-            if ($value['player_black'] === null) {
+            if (($value['player_black'] === null) && ($value['player_white'] !== $_SESSION['username'])) {
                 $games[$key]['player_black'] = $_SESSION['username'];
                 $json_file = fopen('../data/checkers.json', 'w');
                 fwrite($json_file, json_encode($games));

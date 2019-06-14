@@ -1,13 +1,8 @@
 function getClicks() {
     // Define variables
     let clicked = true;
-    let firstclick = undefined;
-    let secondclick = undefined;
-    let validTurn = undefined;
-    let color = undefined;
-    let getMoves = undefined;
-    let possibleMoves = undefined;
-    let hitMoves = undefined;
+    let firstclick, secondclick, validTurn, color, getMoves,
+        possibleMoves, hitMoves;
     //Call turn.php which checks whose turn it is
     let validate = $.post('scripts/turn.php', {call_now: 'True'});
     validate.done(function (data) {
@@ -16,6 +11,7 @@ function getClicks() {
         color = data.class;
     });
     $("td").click(function() {
+        console.log(validTurn. user);
         // If it is players turn
         if (validTurn) {
             if (clicked) {
@@ -47,10 +43,10 @@ function getClicks() {
                 print_latest_positions();
             }
         }
-        // Update turn
+        // Update turn before next click
         validate = $.post('scripts/turn.php', {call_now: 'True'});
         validate.done(function (data) {
-            valid = data.valid;
+            validTurn = data.valid;
             color = data.class;
         });
     })
@@ -146,7 +142,7 @@ function validateMove(possible, hit, first, second) {
 }
 
 function move(oldpos, newpos) {
-    let move = $.post("scripts/move.php", {call_now: 'True', old_position: oldpos, new_position: newpos});
+    let move = $.post("scripts/move_piece.php", {call_now: 'True', old_position: oldpos, new_position: newpos});
     move.done(function () {
         print_latest_positions();
     })
@@ -155,6 +151,13 @@ function move(oldpos, newpos) {
 function new_game() {
     let newgame = $.post('scripts/new_game.php', {call_now: 'True'});
     newgame.done(function() {
+        print_latest_positions();
+    });
+}
+
+function join_game() {
+    let joingame = $.post('scripts/join_game.php', {call_now: 'True'});
+    joingame.done(function() {
         print_latest_positions();
     });
 }
@@ -181,13 +184,14 @@ function print_latest_positions() {
         }
         if (data.player_black !== null) {
             $('#blackplayer').html("Black player: " + data.player_black);
+        } if (data.player_white !== null) {
+            $('#whiteplayer').html("White player: " + data.player_white);
         }
         if (turn === "player_black") {
             $('#colorturn').html("Turn: Black");
         } else {
             $('#colorturn').html("Turn: White");
         }
-        $('#whiteplayer').html("White player: " + data.player_white);
         for (let i = 0; i < positions_ids.length; i++) {
             if (black.includes(positions_ids[i])) {
                 $('#' + positions_ids[i]).addClass("black").html("<img src='images/piece_black.png'>");
@@ -209,6 +213,9 @@ $(function() {
     getClicks();
     $("#startbtn").click(function() {
         new_game();
+    });
+    $("#joinbtn").click(function() {
+        join_game();
     });
     $("#logout").click(function() {
         logout();
