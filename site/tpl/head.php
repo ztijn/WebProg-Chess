@@ -6,6 +6,7 @@ function p_print($array){
     echo "</pre>";
 }
 //Save username
+ini_set('display_errors',"0");
 session_start();
 if (!isset($_SESSION['username']) && isset($_POST['username'])){
     $_SESSION['username'] = $_POST['username'];
