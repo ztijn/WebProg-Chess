@@ -198,26 +198,6 @@ function print_latest_positions() {
     });
 }
 
-// function move_piece () {
-//     $("td").click(function () {
-//         if ($(this).children()[0]) {
-//             let move1 = $(this).attr('id');
-//             $("td").click(function () {
-//                 let move2 = $(this).attr('id');
-//                 if (move1 && move2) {
-//                     let movemade = $.post('scripts/move_piece.php', {moves: [move1, move2]});
-//                     movemade.done(function() {
-//                         print_latest_positions();
-//                     });
-//                     move1 = undefined;
-//                     move2 = undefined;
-//                 }
-//             });
-//         }
-//     });
-// }
-
-
 $(function() {
     print_latest_positions();
     getClicks();
