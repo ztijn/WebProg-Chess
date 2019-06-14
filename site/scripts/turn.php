@@ -22,7 +22,7 @@ if (isset($_POST['call_now'])) {
     $valid = ($_SESSION['username'] === $turn_player);
     $export_data = [
         "valid" => $valid,
-        "class" => $class];
+        "class" => $class,];
     // Return JSON
     header('Content-Type: application/json');
     echo json_encode($export_data);

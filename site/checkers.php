@@ -10,11 +10,17 @@ $navigation = Array(
     )
 );
 //Start session
-if ( !session_id() ) {
-    session_start();
-}
+session_start();
+
 //Save game_id in sessions
-$_SESSION['game_id'] = $_GET['game_id'];
+if (!isset($_GET['game_id'])){
+    $args = array(
+        'submit' => 'true',
+    );
+    header("Location: scripts/add_game.php?" . http_build_query($args));
+} else {
+    $_SESSION['game_id'] = $_GET['game_id'];
+}
 
 include __DIR__ . '/tpl/head.php';
 include __DIR__ . '/tpl/body_start.php';
@@ -23,7 +29,6 @@ include __DIR__ . '/tpl/body_start.php';
     <script type="application/javascript" src="scripts/checkers.js"></script>
     <link rel="stylesheet" href="css/checkers.css">
 
-    <div class="container">
     <div class="row">
         <!--Create the board as a table-->
     <table>
@@ -56,6 +61,7 @@ include __DIR__ . '/tpl/body_start.php';
                     <p id="whiteplayer" class="card-text">White player: </p>
                     <p id="colorturn" class="card-text">Turn: Black</p>
                     <div id="startbtn" class="btn btn-primary">Start new game</div>
+                    <div id="joinbtn" class="btn btn-primary">Join</div>
                 </div>
             </div>
             <?php if (!isset($_SESSION['username'])) { ?>
@@ -75,9 +81,9 @@ include __DIR__ . '/tpl/body_start.php';
             <?php } ?>
         </div>
     </div>
-    </div>
 
 
 <?php
 include __DIR__ . '/tpl/body_end.php';
+include __DIR__ . '/tpl/foot.php';
 ?>
