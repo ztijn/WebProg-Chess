@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec10fa70-a4db-4d92-8658-2a231f262d8a" name="Default Changelist" comment="Automatisch updaten werkt. heeft nog wat foutjes maar worden allemaal verholpen als er gecheckt wordt op mogelijke zetten. dubbele stukken werken nog niet">
+    <list default="true" id="ec10fa70-a4db-4d92-8658-2a231f262d8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site/data/checkers.json" beforeDir="false" afterPath="$PROJECT_DIR$/site/data/checkers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site/scripts/checkers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site/scripts/checkers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/scripts/move_piece.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/scripts/move_piece.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/site/scripts/checkers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="71" column="25" lean-forward="true" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+            <state relative-caret-position="267">
+              <caret line="177" column="64" selection-start-line="177" selection-start-column="64" selection-end-line="177" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -33,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site/scripts/move_piece.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+            <state relative-caret-position="153">
+              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -83,9 +82,9 @@
         <option value="$PROJECT_DIR$/site/tpl/head.php" />
         <option value="$PROJECT_DIR$/site/index.php" />
         <option value="$PROJECT_DIR$/site/rules.php" />
-        <option value="$PROJECT_DIR$/site/scripts/checkers.js" />
         <option value="$PROJECT_DIR$/site/data/checkers.json" />
         <option value="$PROJECT_DIR$/site/scripts/move_piece.php" />
+        <option value="$PROJECT_DIR$/site/scripts/checkers.js" />
       </list>
     </option>
   </component>
@@ -195,17 +194,24 @@
       <option name="project" value="LOCAL" />
       <updated>1560302595234</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="nettere versie, en nu met alle pushes getest">
+      <created>1560303394190</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560303394190</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18626000" />
+    <option name="totallyTimeSpent" value="20096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -247,7 +253,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Automatisch updaten werkt. heeft nog wat foutjes maar worden allemaal verholpen als er gecheckt wordt op mogelijke zetten. dubbele stukken werken nog niet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Automatisch updaten werkt. heeft nog wat foutjes maar worden allemaal verholpen als er gecheckt wordt op mogelijke zetten. dubbele stukken werken nog niet" />
+    <MESSAGE value="nettere versie, en nu met alle pushes getest" />
+    <option name="LAST_COMMIT_MESSAGE" value="nettere versie, en nu met alle pushes getest" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/site/tpl/body_end.php">
@@ -319,17 +326,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/scripts/checkers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="71" column="25" lean-forward="true" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/site/scripts/read_latest_positions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="9" column="57" lean-forward="true" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/site/scripts/move_piece.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -340,10 +347,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/scripts/move_piece.php">
+    <entry file="file://$PROJECT_DIR$/site/scripts/checkers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+        <state relative-caret-position="267">
+          <caret line="177" column="64" selection-start-line="177" selection-start-column="64" selection-end-line="177" selection-end-column="64" />
         </state>
       </provider>
     </entry>

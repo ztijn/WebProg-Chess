@@ -173,6 +173,12 @@ function print_latest_positions() {
         let white_king = data.white_king;
         let black_king = data.black_king;
         let turn = data.turn;
+        // maak een alert als een speler heeft gewonnen
+        if (black.length === 0 && black_king.length === 0) {
+            alert(data.player_white + " has won!");
+        } else if (white.length === 0 && white_king.length === 0) {
+            alert(data.player_black + " has won!");
+        }
         if (data.player_black !== null) {
             $('#blackplayer').html("Black player: " + data.player_black);
         }
